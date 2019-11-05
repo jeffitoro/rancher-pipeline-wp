@@ -27,24 +27,28 @@ spec:
       labels:
         app: mysql
     spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
       containers:
       - name: mysql
-        image: mysql:${CICD_EXECUTION_SEQUENCE}
+        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 80
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: phpmyadmin
+      app: phpadmin
   template:
     metadata:
       labels:
-        app: phpmyadmin
+        app: phpadmin
     spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
       containers:
-      - name: phpmyadmin
-        image: phpmyadmin:${CICD_EXECUTION_SEQUENCE}
+      - name: phpadmin
+        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 80
 
