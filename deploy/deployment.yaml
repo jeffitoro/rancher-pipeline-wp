@@ -27,8 +27,6 @@ spec:
       labels:
         app: mysql
     spec:
-      imagePullSecrets:
-      - name: test
       containers:
       - name: mysql
         image: mysql:${CICD_EXECUTION_SEQUENCE}
@@ -38,17 +36,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: phpadmin
+      app: phpmyadmin
   template:
     metadata:
       labels:
-        app: phpadmin
+        app: phpmyadmin
     spec:
-      imagePullSecrets:
-      - name: test
       containers:
-      - name: phpadmin
-        image: phpadmin:${CICD_EXECUTION_SEQUENCE}
+      - name: phpmyadmin
+        image: phpmyadmin:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 80
 
