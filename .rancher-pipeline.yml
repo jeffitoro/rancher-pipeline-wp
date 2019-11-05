@@ -1,0 +1,15 @@
+stages:
+- name: Publish image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./phpadmin/Dockerfile
+      buildContext: ./phpadmin
+      tag: phpmyadmin:${CICD_EXECUTION_SEQUENCE}
+  - publishImageConfig:
+      dockerfilePath: ./mysql/Dockerfile
+      buildContext: ./mysql
+      tag: mysql:${CICD_EXECUTION_SEQUENCE}
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+          path: ./deploy/deployment.yaml
