@@ -28,7 +28,7 @@ spec:
         app: mysql
     spec:
       imagePullSecrets:
-      - name: index.docker.io
+      - name: pipeline-docker-registry
       containers:
       - name: mysql
         image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
@@ -45,7 +45,7 @@ spec:
         app: phpadmin
     spec:
       imagePullSecrets:
-      - name: index.docker.io
+      - name: pipeline-docker-registry
       containers:
       - name: phpadmin
         image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
